@@ -24,6 +24,7 @@ module API
       end
 
       def validation_error(e)
+        # To make errors look like: {'1' => 'error message}
         errors = e.record.errors.map { |err| [err.options[:field_id], err.message] }.to_h
 
         render json: {status: 422, errors: errors}, status: :unprocessable_entity

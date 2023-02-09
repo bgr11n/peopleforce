@@ -32,6 +32,7 @@
 	```
 
 ## Assumptions during development
+- Added only users#update action as was required by test task;
 - Consider using CSRF protection or API keys (not relevant for test task purpose);
 - Consider using policies for authorization (ex. [pundit](https://github.com/varvet/pundit));
 - Also possible to store fields values not in jsonb field but in separate table.

@@ -1,24 +1,42 @@
-# README
+# Peopleforce
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+## Project startup
 
-Things you may want to cover:
+- Pre-installed docker
+- Enter bash inside docker:
+	```bash
+	docker-compose run app bash
+	```
+- Inside docker, install gems:
+	```bash
+	bundle install
+	```
+- Inside docker, setup dev/test database:
+	```bash
+	bundle exec rake db:setup
+	```
+- To start server:
+	```bash
+	docker-compose up --force-recreate app
+	```
+- Project will be available at `http://localhost:3300`
 
-* Ruby version
+## Running specs
 
-* System dependencies
+- Inside docker container, prepare DB:
+	```bash
+	RAILS_ENV=test rake db:create
+	RAILS_ENV=test rake db:schema:load
 
-* Configuration
+	bundle exec rspec
+	```
 
-* Database creation
+## Assumptions during development
+- Consider using CSRF protection or API keys (not relevant for test task purpose);
+- Consider using policies for authorization (ex. [pundit](https://github.com/varvet/pundit));
+- Also possible to store fields values not in jsonb field but in separate table.
 
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
+### TODOs
+- Add schema annotations (ex. [the_schema_is](https://github.com/zverok/the_schema_is), [annotate](https://github.com/ctran/annotate_models));
+- Add module tests (for test task purpose was omitted because requests tests covers all introduced logic);
+- Consider using lib for business logic (ex. [traiblazer-operation](https://github.com/trailblazer/trailblazer-operation)).

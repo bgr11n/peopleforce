@@ -21,9 +21,8 @@ services:
     environment:
       POSTGRES_USER: user
       POSTGRES_PASSWORD: password
-      PGPORT: 6432
     ports:
-      - 6432:6432
+      - 5432:5432
 
 volumes:
   dbdata:

@@ -10,6 +10,7 @@ services:
       - 3300:3300
     volumes:
       - .:/app
+      - bundle:/usr/local/bundle
     depends_on:
       - postgres
 
@@ -26,3 +27,4 @@ services:
 
 volumes:
   dbdata:
+  bundle:

@@ -1,0 +1,28 @@
+version: '2'
+services:
+  app:
+    image: ruby:3.2.1
+    environment:
+      DATABASE_URL: 'postgresql://user:password@postgres:5432'
+    command: bash -c "rm /app/tmp/pids/server.pid ; bundle exec rails server -p 3300 -b 0.0.0.0"
+    working_dir: /app
+    ports:
+      - 3300:3300
+    volumes:
+      - .:/app
+    depends_on:
+      - postgres
+
+  postgres:
+    image: postgres:latest
+    volumes:
+      - dbdata:/var/lib/postgresql/data
+    environment:
+      POSTGRES_USER: user
+      POSTGRES_PASSWORD: password
+      PGPORT: 6432
+    ports:
+      - 6432:6432
+
+volumes:
+  dbdata:

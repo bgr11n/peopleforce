@@ -1,5 +1,8 @@
 # Peopleforce
 
+Ruby version `3.2.1`
+Rails version `7.0.4.2`
+
 ## Project startup
 
 - Pre-installed docker
